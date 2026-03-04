@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://00smh362wnj8"]
+
+[ext_resource type="Texture2D" uid="uid://dygb1rffd301d" path="res://assets/collectibles/potions.png" id="1_4l8vr"]
+[ext_resource type="Script" uid="uid://ebsdprmsbbsw" path="res://Scripts/potion.gd" id="1_nymo1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nymo1"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi5ht"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xhxc"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc5rj"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02bfh"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0vx5"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrajh"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1jwi"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf53k"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onw0v"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmutu"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5p8s"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t2pl"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvhuo"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atdgd"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shqcl"]
+atlas = ExtResource("1_4l8vr")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4i2ip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nymo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi5ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xhxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc5rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02bfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0vx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrajh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1jwi")
+}],
+"loop": true,
+"name": &"bigPotion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf53k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onw0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmutu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5p8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t2pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvhuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atdgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shqcl")
+}],
+"loop": true,
+"name": &"smallPotion",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nymo1"]
+radius = 9.0
+height = 22.0
+
+[node name="Potion" type="Area2D" unique_id=1577032938]
+texture_filter = 1
+script = ExtResource("1_nymo1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2129297178]
+sprite_frames = SubResource("SpriteFrames_4i2ip")
+animation = &"smallPotion"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=199517264]
+shape = SubResource("CapsuleShape2D_nymo1")
