@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var potion_scene : PackedScene
-@export var gem_scene : PackedScene
+@export var potion_scene: PackedScene
+@export var gem_scene: PackedScene
 
 @onready var player = $Player
 @onready var spawn_timer = $SpawnTimer
@@ -12,40 +12,51 @@ extends Node2D
 @onready var gem_label = $UI/GemContainer/GemLabel
 @onready var fade_timer = $UI/FadeTimer
 
-var gem_count = 0
-
-var fuel_frame_width = 230
-var fuel_frame_height = 180
+var gem_count := 0
 
 
 func _ready():
 	spawn_timer.timeout.connect(spawn_random)
 	fade_timer.timeout.connect(hide_gem_ui)
 
+	fuel_bar.max_value = player.max_fuel
+	update_fuel_bar()
+
 
 func spawn_random():
-
-	var spawn_position = Vector2(
-		randf_range(100, 900),
-		player.position.y + randf_range(200, 800)
-	)
+	var spawn_position = get_random_spawn_position()
+	if spawn_position == null:
+		return
 
 	if randi() % 2 == 0:
-		var potion = potion_scene.instantiate()
+		var potion := potion_scene.instantiate()
 		container.add_child(potion)
 		potion.position = spawn_position
 	else:
-		var gem = gem_scene.instantiate()
+		var gem := gem_scene.instantiate()
 		container.add_child(gem)
 		gem.position = spawn_position
 		gem.gem_collected.connect(on_gem_collected)
 
 
-func on_gem_collected(value):
+func get_random_spawn_position():
+	var spawn_points := get_tree().get_nodes_in_group("spawn_point")
 
+	if spawn_points.is_empty():
+		return null
+
+	var index := randi() % spawn_points.size()
+	var point = spawn_points[index]
+
+	if point is Node2D:
+		return point.global_position
+
+	return null
+
+
+func on_gem_collected(value):
 	gem_count += value
 	gem_label.text = str(gem_count)
-
 	show_gem_ui()
 
 
@@ -55,7 +66,7 @@ func show_gem_ui():
 
 
 func hide_gem_ui():
-	var tween = create_tween()
+	var tween := create_tween()
 	tween.tween_property(gem_container, "modulate:a", 0, 1.0)
 
 
@@ -64,24 +75,4 @@ func _process(delta):
 
 
 func update_fuel_bar():
-
-	var percent = player.fuel / player.max_fuel
-	var frame = 4 
-
-	if percent == 1:
-		frame = 4
-	elif percent == 0.75:
-		frame = 3
-	elif percent == 0.50:
-		frame = 2
-	elif percent == 0.25:
-		frame = 1
-	else:
-		frame = 0
-
-	fuel_bar.region_rect = Rect2(
-		frame * fuel_frame_width,
-		0,
-		fuel_frame_width,
-		fuel_frame_height
-	)
+	fuel_bar.value = player.fuel

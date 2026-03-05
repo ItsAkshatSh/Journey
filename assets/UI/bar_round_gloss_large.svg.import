@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwsn251j3hl1j"
-path="res://.godot/imported/fuel.png-44143d05c2e020d9c79ced8cfb698fe2.ctex"
+uid="uid://cu18wbc4y24j6"
+path="res://.godot/imported/bar_round_gloss_large.svg-503e676136a76385869763b41abe2a35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/fuel.png"
-dest_files=["res://.godot/imported/fuel.png-44143d05c2e020d9c79ced8cfb698fe2.ctex"]
+source_file="res://assets/UI/bar_round_gloss_large.svg"
+dest_files=["res://.godot/imported/bar_round_gloss_large.svg-503e676136a76385869763b41abe2a35.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

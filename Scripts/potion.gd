@@ -15,7 +15,10 @@ func _ready():
 
 func randomize_potion():
 
-	if randi() % 2 == 0:
+	var roll := randi() % 100
+
+	# Small potions are more common than big ones
+	if roll < 70:
 		sprite.play("smallPotion")
 		fuel_amount = small_amount
 	else:
