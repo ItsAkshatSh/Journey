@@ -2,6 +2,8 @@ extends Node2D
 
 @export var potion_scene: PackedScene
 @export var gem_scene: PackedScene
+@export var low_fuel_threshold_ratio := 0.15
+@export var low_fuel_pulse_speed := 6.0
 
 @onready var player = $Player
 @onready var spawn_timer = $SpawnTimer
@@ -76,3 +78,18 @@ func _process(delta):
 
 func update_fuel_bar():
 	fuel_bar.value = player.fuel
+	update_low_fuel_feedback()
+
+
+func update_low_fuel_feedback() -> void:
+	if player.max_fuel <= 0:
+		fuel_bar.modulate = Color.WHITE
+		return
+
+	var ratio := float(player.fuel) / float(player.max_fuel)
+	if ratio <= low_fuel_threshold_ratio and ratio > 0.0:
+		var t := Time.get_ticks_msec() / 1000.0
+		var pulse := 0.55 + 0.45 * (0.5 + 0.5 * sin(t * low_fuel_pulse_speed))
+		fuel_bar.modulate = Color(1.0, pulse, pulse, 1.0)
+	else:
+		fuel_bar.modulate = Color.WHITE
